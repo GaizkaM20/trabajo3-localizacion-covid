@@ -47,8 +47,8 @@ public class ContactosCovid {
 	public void setLocalizacion(Localizacion localizacion) {
 		this.localizacion = localizacion;
 	}
-	
-	
+
+
 
 	public ListaContactos getListaContactos() {
 		return listaContactos;
@@ -95,7 +95,7 @@ public class ContactosCovid {
 		BufferedReader br = null;
 		String datas[] = null, data = null;
 		loadDataFile(fichero, reset, archivo, fr, br, datas, data);
-		
+
 	}
 
 	@SuppressWarnings("resource")
@@ -106,11 +106,7 @@ public class ContactosCovid {
 			archivo = new File(fichero);
 			fr = new FileReader(archivo);
 			br = new BufferedReader(fr);
-			if (reset) {
-				this.poblacion = new Poblacion();
-				this.localizacion = new Localizacion();
-				this.listaContactos = new ListaContactos();
-			} 
+			reseteo(reset);
 			/**
 			 * Lectura del fichero	línea a línea. Compruebo que cada línea 
 			 * tiene el tipo PERSONA o LOCALIZACION y cargo la línea de datos en la 
@@ -157,6 +153,17 @@ public class ContactosCovid {
 			}
 		}
 	}
+
+	public void reseteo(boolean r)
+	{
+		if (r) {
+			this.poblacion = new Poblacion();
+			this.localizacion = new Localizacion();
+			this.listaContactos = new ListaContactos();
+		}
+	}
+
+
 	public int findPersona(String documento) throws EmsPersonNotFoundException {
 		int pos;
 		try {
